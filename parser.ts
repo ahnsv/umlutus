@@ -1,30 +1,57 @@
+import { Project, Directory, SyntaxKind, Node as wrappedNode, ForEachChildTraversalControl } from "ts-simple-ast"
+import * as ts from "typescript"
 
-import * as fs from "fs";
-import * as ts from "typescript";
-
-// TODO: figure out how to walk thru inputFiles, parse, then output AST
-export class Delinter {
-    constructor() { }
-    parse(file: ts.SourceFile) {
-        this._delint(file)
-    }
-    private _delint(node: ts.Node) {
-        switch (node.kind) {
-            case ts.SyntaxKind.ClassDeclaration:
-                this._delintClass(node)
-                break;
-            case ts.SyntaxKind.EnumDeclaration:
-                this._delintEnum(node)
-            default:
-                ts.forEachChild(node, (n) => { this._delint(n) })
-                break;
-        }
-    }
-    private _delintClass(node: ts.Node) {
-
-    }
-
-    private _delintEnum(node: ts.Node) {
-
+export default function parse(tsConfigFilePath: string, directoryPath: string) {
+    const project = new Project({
+        tsConfigFilePath
+    });
+    const directory: Directory = project.getDirectoryOrThrow(directoryPath)
+    const sourceFiles = directory.getSourceFiles()
+    for (const sourceFile of sourceFiles) {
+        sourceFile.forEachChild((child) => {
+            switch (child.getKind()) {
+                case SyntaxKind.ClassDeclaration:
+                    console.log("class found!")
+                    parseClassNode(child)
+                    break
+                case SyntaxKind.EnumDeclaration:
+                    console.log("enum found!")
+                    child.getFullText()
+                    break
+                default:
+                    child.getFullText()
+                    break
+            }
+        })
     }
 }
+
+function parseClassNode(node: wrappedNode) {
+    switch (node.getKind()) {
+        case ts.SyntaxKind.PropertyDeclaration:
+            console.log("====================================");
+            console.log("property declaration");
+            console.log("====================================");
+            break;
+        case ts.SyntaxKind.ExtendsKeyword:
+        case ts.SyntaxKind.StaticKeyword:
+        case ts.SyntaxKind.FunctionDeclaration:
+        case ts.SyntaxKind.GetAccessor:
+        case ts.SyntaxKind.SetAccessor:
+            break;
+        case ts.SyntaxKind.MethodDeclaration:
+            console.log("====================================");
+            console.log("method declaration");
+            console.log("====================================");
+            break;
+        default:
+            console.log("====================================");
+            console.log("default hi");
+            console.log("====================================");
+            node.forEachChild((n) => { parseClassNode.bind(n) })
+            break;
+    }
+}
+
+function parseEnumNode(node: wrappedNode) { }
+function parseInterfaceNode(node: wrappedNode) { }

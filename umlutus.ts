@@ -1,9 +1,10 @@
 import * as ts from "typescript"
-import AST from "./ast"
+import TsAST from "./ast"
 
-const ast = new AST({
+const ast = new TsAST({
     module: ts.ModuleKind.CommonJS,
+    noEmitOnError: true,
+    noImplicitAny: true,
     target: ts.ScriptTarget.ES5,
-}, process.argv.slice(2))
-
+}, "./example")
 ast.init()

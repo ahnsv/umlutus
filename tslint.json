@@ -17,7 +17,11 @@
         "trailing-comma": false,
         "member-access": false,
         "no-console": false,
-        "no-bitwise": false
+        "no-bitwise": false,
+        "class-name": false,
+        "no-shadowed-variable": false,
+        "max-line-length": false,
+        "no-unused-expression": false
     },
     "rulesDirectory": []
 }

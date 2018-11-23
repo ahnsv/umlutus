@@ -6,5 +6,5 @@ const ast = new TsAST({
     noEmitOnError: true,
     noImplicitAny: true,
     target: ts.ScriptTarget.ES5,
-}, "./example")
+}, "../example")
 ast.init()

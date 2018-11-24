@@ -1,2 +1,5 @@
-import plantUml from "./types/plantuml";
-import plantUmlExecutor from "./types/plantuml-executor"
+import plantuml from "node-plantuml"
+
+export function buildUml() { }
+export function buildClass() { }
+export function buildModule() { }

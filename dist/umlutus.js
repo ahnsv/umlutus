@@ -14,6 +14,8 @@ var ts = __importStar(require("typescript"));
 var ast_1 = __importDefault(require("./ast"));
 var ast = new ast_1.default({
     module: ts.ModuleKind.CommonJS,
+    noEmitOnError: true,
+    noImplicitAny: true,
     target: ts.ScriptTarget.ES5,
-}, process.argv.slice(2));
+}, "./example");
 ast.init();

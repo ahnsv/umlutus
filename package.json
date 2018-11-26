@@ -30,6 +30,8 @@
   "dependencies": {
     "fs": "0.0.1-security",
     "graphviz": "0.0.8",
-    "node-plantuml": "^0.7.0"
+    "node-plantuml": "^0.7.0",
+    "tslint": "^5.11.0",
+    "vscode": "^1.1.21"
   }
 }

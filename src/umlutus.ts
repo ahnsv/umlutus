@@ -1,17 +1,12 @@
-import { getAst, parseDeclaration } from "./parser"
-import {} from "./umlBuilder"
+import { getJSONdocumentation } from "./parser"
+import { } from "./umlBuilder"
+import * as ts from "typescript"
 
-export function umulutus(tsConfigPath: string, sourceFilesPaths: string[]) {
-    const ast = getAst(tsConfigPath, sourceFilesPaths)
-    const files = ast.getSourceFiles()
-    const declarations = files.map(f => {
-        const classes = f.getClasses();
-        const interfaces = f.getInterfaces();
-        const path = f.getFilePath();
-        return {
-            fileName: path,
-            classes: classes.map(parseDeclaration),
-            interfaces: interfaces.map(parseDeclaration)
-        };
-    });
+export function umlutus(sourceFilesPaths: string[], tsConfigPath: ts.CompilerOptions) {
+    getJSONdocumentation(sourceFilesPaths, tsConfigPath)
 }
+
+umlutus(process.argv.slice(2), {
+    target: ts.ScriptTarget.ES5,
+    module: ts.ModuleKind.CommonJS,
+})

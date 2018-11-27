@@ -2,8 +2,10 @@ import plantuml from "node-plantuml"
 import fs from "fs"
 
 export function buildUml() { }
-export function buildClass() { }
-export function buildModule() { }
-
-const gen = plantuml.generate("input-file");
-gen.out.pipe(fs.createWriteStream("output-file.png"))
+export function buildGeneralization() { }
+export function buildRealization() { }
+export function buildDependency() { }
+export function buildAssociation() { }
+export function buildDirectAssociation() { }
+export function buildAggregation() { }
+export function buildComposition() { }

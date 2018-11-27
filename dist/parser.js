@@ -6,8 +6,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     result["default"] = mod;
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var ts = __importStar(require("typescript"));
+var fs_1 = __importDefault(require("fs"));
+var util_1 = require("util");
 /**
  * Creates an instance of serializer.
  * @param symbol
@@ -161,6 +166,9 @@ function getJSONdocumentation(fileNames, options) {
     }
     /** Serialize a symbol into a json object */
     function serializeSymbol(symbol) {
+        var declarations = symbol.getDeclarations();
+        var inspected = util_1.inspect(declarations);
+        fs_1.default.writeFileSync("symbolDeclarations.json", JSON.stringify(inspected, undefined, 4));
         return {
             name: symbol.getName(),
             documentation: ts.displayPartsToString(symbol.getDocumentationComment(checker)),
@@ -185,6 +193,7 @@ function getJSONdocumentation(fileNames, options) {
             documentation: ts.displayPartsToString(signature.getDocumentationComment(checker)),
         };
     }
+    function serializeKeywords(keywords) { }
     /** True if this is visible outside this file, false otherwise */
     function isNodeExported(node) {
         return ((ts.getCombinedModifierFlags(node) & ts.ModifierFlags.Export) !== 0 ||

@@ -1,11 +1,18 @@
 import * as ts from "typescript";
 import fs from "fs";
+import { inspect } from "util"
 
+export interface IKeywords {
+  extends?: boolean
+  implements?: boolean
+  // TODO: more keywords
+}
 export interface IJSONOuput {
   name?: string;
   fileName?: string;
   documentation?: string;
   type?: string;
+  keywords?: IKeywords;
   constructors?: IJSONOuput[];
   parameters?: IJSONOuput[];
   returnType?: string;
@@ -105,7 +112,7 @@ export class Walker {
     return (
       (ts.getCombinedModifierFlags(node as ts.Declaration) &
         ts.ModifierFlags.Export) !==
-        0 ||
+      0 ||
       (!!node.parent && node.parent.kind === ts.SyntaxKind.SourceFile)
     );
   }
@@ -191,6 +198,9 @@ export function getJSONdocumentation(
 
   /** Serialize a symbol into a json object */
   function serializeSymbol(symbol: ts.Symbol): IJSONOuput {
+    const declarations = symbol.getDeclarations()
+    declarations
+    // fs.writeFileSync("symbolDeclarations.json", JSON.stringify(inspected, undefined, 4))
     return {
       name: symbol.getName(),
       documentation: ts.displayPartsToString(symbol.getDocumentationComment(checker)),
@@ -222,6 +232,10 @@ export function getJSONdocumentation(
       returnType: checker.typeToString(signature.getReturnType()),
       documentation: ts.displayPartsToString(signature.getDocumentationComment(checker)),
     };
+  }
+
+  function serializeKeywords(keywords: ts.KeywordTypeNode) {
+    keywords.getFirstToken()
   }
 
   /** True if this is visible outside this file, false otherwise */

@@ -10,7 +10,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var parser_1 = require("./parser");
 var ts = __importStar(require("typescript"));
 function umlutus(sourceFilesPaths, tsConfigPath) {
-    parser_1.getJSONdocumentation(sourceFilesPaths, tsConfigPath);
+    var output = parser_1.getJSONdocumentation(sourceFilesPaths, tsConfigPath);
+    console.log("output is ", output);
 }
 exports.umlutus = umlutus;
 umlutus(process.argv.slice(2), {

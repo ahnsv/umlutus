@@ -1,1 +1,62 @@
-[]
+[
+    {
+        "name": "Shape",
+        "documentation": "",
+        "type": "typeof Shape",
+        "constructors": [
+            {
+                "parameters": [],
+                "returnType": "Shape",
+                "documentation": ""
+            }
+        ]
+    },
+    {
+        "name": "Triangle",
+        "documentation": "",
+        "type": "typeof Triangle",
+        "constructors": [
+            {
+                "parameters": [],
+                "returnType": "Triangle",
+                "documentation": ""
+            }
+        ]
+    },
+    {
+        "name": "Rectangle",
+        "documentation": "",
+        "type": "typeof Rectangle",
+        "constructors": [
+            {
+                "parameters": [],
+                "returnType": "Rectangle",
+                "documentation": ""
+            }
+        ]
+    },
+    {
+        "name": "Circle",
+        "documentation": "",
+        "type": "typeof Circle",
+        "constructors": [
+            {
+                "parameters": [],
+                "returnType": "Circle",
+                "documentation": ""
+            }
+        ]
+    },
+    {
+        "name": "Canvas",
+        "documentation": "",
+        "type": "typeof Canvas",
+        "constructors": [
+            {
+                "parameters": [],
+                "returnType": "Canvas",
+                "documentation": ""
+            }
+        ]
+    }
+]

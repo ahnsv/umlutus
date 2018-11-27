@@ -1,9 +1,11 @@
-import { getJSONdocumentation } from "./parser"
+import { getJSONdocumentation, IJSONOuput } from "./parser";
 import { } from "./umlBuilder"
 import * as ts from "typescript"
 
 export function umlutus(sourceFilesPaths: string[], tsConfigPath: ts.CompilerOptions) {
-    getJSONdocumentation(sourceFilesPaths, tsConfigPath)
+    const output: IJSONOuput[] = getJSONdocumentation(sourceFilesPaths, tsConfigPath)
+    console.log("output is ", output);
+
 }
 
 umlutus(process.argv.slice(2), {

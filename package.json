@@ -25,13 +25,12 @@
   "homepage": "https://github.com/ahnsv/umlutus#readme",
   "devDependencies": {
     "@types/node": "^10.12.9",
-    "ts-simple-ast": "^19.0.0"
+    "typescript": "^3.1.6"
   },
   "dependencies": {
     "fs": "0.0.1-security",
     "graphviz": "0.0.8",
     "node-plantuml": "^0.7.0",
-    "tslint": "^5.11.0",
-    "vscode": "^1.1.21"
+    "tslint": "^5.11.0"
   }
 }
